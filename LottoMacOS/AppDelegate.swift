@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LottoAPI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,7 +16,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        let url = URL(string: "http://serwis.mobilotto.pl")!
+        let client = LottoAPI.makeClient(baseURL: url)
+        client.getNewestResults { (response) in
+            switch response {
+            case .value(_):
+                print("works")
+            case .error(let error):
+                print("error \(error)")
+            }
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
