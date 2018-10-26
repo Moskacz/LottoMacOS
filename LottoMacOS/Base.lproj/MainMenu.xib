@@ -12,7 +12,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LottoMacOS" customModuleProvider="target"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LottoMacOS" customModuleProvider="target">
+            <connections>
+                <outlet property="menu" destination="Whj-Du-Wqw" id="w71-qT-W6t"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="Whj-Du-Wqw">
             <items>
@@ -21,6 +25,9 @@
                 </menuItem>
                 <menuItem title="Quit" id="7cS-WW-89R">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitSelected:" target="Voe-Tx-rLC" id="jeF-Gr-aUp"/>
+                    </connections>
                 </menuItem>
             </items>
         </menu>
