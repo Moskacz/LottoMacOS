@@ -11,10 +11,14 @@ import LottoAPI
 
 final class ResultsController: NSObject {
     
+    @IBOutlet private weak var menu: NSMenu!
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let client = LottoAPI.makeClient(baseURL: URL(string: "http://serwis.mobilotto.pl")!)
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        statusItem.title = "Lotto"
+        statusItem.menu = menu
     }
     
     @IBAction func quitSelected(_ sender: NSMenuItem) {

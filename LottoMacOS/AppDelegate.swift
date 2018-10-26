@@ -11,14 +11,11 @@ import LottoAPI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var menu: NSMenu!
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.title = "Lotto"
-        statusItem.menu = menu
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
