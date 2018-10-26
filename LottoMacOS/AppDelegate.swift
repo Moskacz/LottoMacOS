@@ -17,30 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
         statusItem.title = "Lotto"
         statusItem.menu = menu
-        
-        let url = URL(string: "http://serwis.mobilotto.pl")!
-        let client = LottoAPI.makeClient(baseURL: url)
-        client.getNewestResults { (response) in
-            switch response {
-            case .value(_):
-                print("works")
-            case .error(let error):
-                print("error \(error)")
-            }
-        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-    
-    
-    @IBAction func quitSelected(_ sender: NSMenuItem) {
-        NSApplication.shared.terminate(self)
-    }
-    
 }
 
