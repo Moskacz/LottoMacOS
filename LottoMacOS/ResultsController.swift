@@ -19,8 +19,8 @@ final class ResultsController: NSObject {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        statusItem.title = "Lotto"
         statusItem.menu = menu
+        statusItem.image = NSImage(named: "status_icon")
     }
     
     @IBAction func quitSelected(_ sender: NSMenuItem) {
