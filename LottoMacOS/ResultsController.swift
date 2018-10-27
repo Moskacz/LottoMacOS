@@ -15,6 +15,8 @@ final class ResultsController: NSObject {
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let client = LottoAPI.makeClient(baseURL: URL(string: "http://serwis.mobilotto.pl")!)
     
+    private var fetchingTask: URLSessionDataTask?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         statusItem.title = "Lotto"
@@ -26,8 +28,9 @@ final class ResultsController: NSObject {
     }
     
     @IBAction func refreshSelected(_ sender: NSMenuItem) {
+        fetchingTask?.cancel()
         print("fetching...")
-        client.getNewestResults { response in
+        fetchingTask = client.getNewestResults { response in
             switch response {
             case .error(_):
                 print("failed!");
