@@ -20,7 +20,8 @@ final class ResultsController: NSObject {
     override func awakeFromNib() {
         super.awakeFromNib()
         statusItem.menu = menu
-        statusItem.image = NSImage(named: "status_icon")
+        let icon = NSImage(named: "status_icon")
+        statusItem.image = icon
     }
     
     @IBAction func quitSelected(_ sender: NSMenuItem) {

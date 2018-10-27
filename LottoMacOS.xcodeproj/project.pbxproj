@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35788B7B2184AE170002B00B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35788B7A2184AE170002B00B /* ResultView.swift */; };
 		90122C3221819EBF00917483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90122C3121819EBF00917483 /* AppDelegate.swift */; };
 		90122C3421819EC000917483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90122C3321819EC000917483 /* Assets.xcassets */; };
 		90122C3721819EC000917483 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90122C3521819EC000917483 /* MainMenu.xib */; };
@@ -30,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		35788B7A2184AE170002B00B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		90122C2E21819EBF00917483 /* LottoMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LottoMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90122C3121819EBF00917483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90122C3321819EC000917483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				90122C3821819EC000917483 /* Info.plist */,
 				90122C3921819EC000917483 /* LottoMacOS.entitlements */,
 				90445E7B2182F1890011B0E5 /* ResultsController.swift */,
+				35788B7A2184AE170002B00B /* ResultView.swift */,
 			);
 			path = LottoMacOS;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				90445E7C2182F1890011B0E5 /* ResultsController.swift in Sources */,
 				90122C3221819EBF00917483 /* AppDelegate.swift in Sources */,
+				35788B7B2184AE170002B00B /* ResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

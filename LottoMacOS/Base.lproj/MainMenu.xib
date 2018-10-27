@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -35,5 +36,51 @@
                 </menuItem>
             </items>
         </menu>
+        <customView id="oVC-a9-QlG" customClass="ResultView" customModule="LottoMacOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="339" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ch6-nc-d6m">
+                    <rect key="frame" x="82" y="49" width="243" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="LIZ-VS-zx9">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bfM-TH-bxz">
+                    <rect key="frame" x="82" y="16" width="243" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="AmG-DD-Ebq">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="out-q6-7hk">
+                    <rect key="frame" x="20" y="17" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="FTM-Q0-6YB"/>
+                        <constraint firstAttribute="height" constant="48" id="ing-vj-rvh"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Maq-L9-1p4"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="out-q6-7hk" firstAttribute="centerY" secondItem="oVC-a9-QlG" secondAttribute="centerY" id="0gV-X5-3hh"/>
+                <constraint firstItem="ch6-nc-d6m" firstAttribute="leading" secondItem="out-q6-7hk" secondAttribute="trailing" constant="16" id="49k-gW-TtY"/>
+                <constraint firstAttribute="trailing" secondItem="bfM-TH-bxz" secondAttribute="trailing" constant="16" id="5Fp-Ru-VrA"/>
+                <constraint firstAttribute="bottom" secondItem="bfM-TH-bxz" secondAttribute="bottom" constant="16" id="L4p-iv-zKV"/>
+                <constraint firstAttribute="trailing" secondItem="ch6-nc-d6m" secondAttribute="trailing" constant="16" id="WJf-N3-8k8"/>
+                <constraint firstItem="bfM-TH-bxz" firstAttribute="leading" secondItem="out-q6-7hk" secondAttribute="trailing" constant="16" id="cg5-8O-7Iz"/>
+                <constraint firstItem="ch6-nc-d6m" firstAttribute="top" secondItem="oVC-a9-QlG" secondAttribute="top" constant="16" id="uX8-W2-CDo"/>
+                <constraint firstItem="out-q6-7hk" firstAttribute="leading" secondItem="oVC-a9-QlG" secondAttribute="leading" constant="20" id="uwq-Dd-Fvu"/>
+            </constraints>
+            <connections>
+                <outlet property="dateLabel" destination="bfM-TH-bxz" id="xfX-kG-fZ8"/>
+                <outlet property="imageView" destination="out-q6-7hk" id="80p-kv-1BQ"/>
+                <outlet property="resultsLabel" destination="ch6-nc-d6m" id="vmz-2N-5dj"/>
+            </connections>
+            <point key="canvasLocation" x="227.5" y="390"/>
+        </customView>
     </objects>
 </document>
