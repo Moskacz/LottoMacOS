@@ -16,6 +16,7 @@
         <customObject id="ZoI-tc-bxu" customClass="ResultsController" customModule="LottoMacOS" customModuleProvider="target">
             <connections>
                 <outlet property="menu" destination="Whj-Du-Wqw" id="QaE-YA-afo"/>
+                <outlet property="resultsItem" destination="fBe-s2-Do8" id="Zf5-TN-XDJ"/>
             </connections>
         </customObject>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LottoMacOS" customModuleProvider="target"/>
@@ -27,6 +28,9 @@
                     <connections>
                         <action selector="refreshSelected:" target="ZoI-tc-bxu" id="ON0-3w-o3I"/>
                     </connections>
+                </menuItem>
+                <menuItem title="Results" id="fBe-s2-Do8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Quit" id="7cS-WW-89R">
                     <modifierMask key="keyEquivalentModifierMask"/>

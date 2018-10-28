@@ -12,6 +12,8 @@ import LottoAPI
 final class ResultsController: NSObject {
     
     @IBOutlet private weak var menu: NSMenu!
+    @IBOutlet weak var resultsItem: NSMenuItem!
+    
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let client = LottoAPI.makeClient(baseURL: URL(string: "http://serwis.mobilotto.pl")!)
     
@@ -31,14 +33,37 @@ final class ResultsController: NSObject {
     @IBAction func refreshSelected(_ sender: NSMenuItem) {
         fetchingTask?.cancel()
         print("fetching...")
-        fetchingTask = client.getNewestResults { response in
+        fetchingTask = client.getNewestResults { [weak self] response in
             switch response {
             case .error(_):
                 print("failed!");
-            case .value(_):
-                print("fetched!")
+            case .value(let results):
+                DispatchQueue.main.async {
+                    self?.display(results: results)
+                }
             }
         }
     }
     
+    private func display(results: LotteriesResults) {
+        let fields = [results.lotto, results.lottoPlus, results.mini].compactMap { $0 }.map { result -> NSTextField in
+            let field = NSTextField()
+            field.stringValue = result.textDescription
+            field.isBezeled = false
+            field.isEditable = false
+            return field
+        }
+        
+        let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+        stackView.orientation = .vertical
+        fields.forEach { stackView.addArrangedSubview($0) }
+        resultsItem.view = stackView
+    }
+}
+
+extension LotteryResult {
+    
+    var textDescription: String {
+        return numbers.map { String($0) }.joined(separator: ", ")
+    }
 }
