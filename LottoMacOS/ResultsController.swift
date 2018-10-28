@@ -32,11 +32,10 @@ final class ResultsController: NSObject {
     
     @IBAction func refreshSelected(_ sender: NSMenuItem) {
         fetchingTask?.cancel()
-        print("fetching...")
         fetchingTask = client.getNewestResults { [weak self] response in
             switch response {
             case .error(_):
-                print("failed!");
+                break
             case .value(let results):
                 DispatchQueue.main.async {
                     self?.display(results: results)
