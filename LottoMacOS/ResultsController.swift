@@ -46,9 +46,11 @@ final class ResultsController: NSObject {
     }
     
     private func display(results: LotteriesResults) {
-        let fields = [results.lotto, results.lottoPlus, results.mini].compactMap { $0 }.map { result -> NSTextField in
+        let labeledResults = [("lotto", results.lotto), ("plus", results.lottoPlus), ("mini", results.mini)]
+        let views = labeledResults.compactMap { labeledResult -> NSView? in
+            guard let result = labeledResult.1 else { return nil }
             let field = NSTextField()
-            field.stringValue = result.textDescription
+            field.stringValue = [labeledResult.0, result.textDescription].joined(separator: ": ")
             field.isBezeled = false
             field.isEditable = false
             return field
@@ -56,7 +58,7 @@ final class ResultsController: NSObject {
         
         let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
         stackView.orientation = .vertical
-        fields.forEach { stackView.addArrangedSubview($0) }
+        views.forEach { stackView.addArrangedSubview($0) }
         resultsItem.view = stackView
     }
 }
