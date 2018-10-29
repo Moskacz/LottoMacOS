@@ -51,21 +51,22 @@ final class ResultsController: NSObject {
     }
     
     private func display(results: LotteriesResults) {
-        let views = results.nonNilResults.map { makeResultView(lotteryName: $0, result: $1) }
-        
+        let views = results.nonNilResults.map { makeResultView(icon: $0, result: $1) }
         let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 300, height: 10))
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.orientation = .vertical
         stackView.alignment = .left
+        stackView.layout()
         views.forEach { stackView.addArrangedSubview($0) }
         resultsItem.view = stackView
     }
     
-    private func makeResultView(lotteryName: String, result: LotteryResult) -> ResultView {
+    private func makeResultView(icon: NSImage, result: LotteryResult) -> ResultView {
         let view = ResultView.makeNew()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.resultsLabel.stringValue = result.resultsText
         view.dateLabel.stringValue = self.dateFormatter.string(from: result.date)
+        view.imageView.image = icon
         return view
     }
 }
@@ -79,8 +80,10 @@ extension LotteryResult {
 
 extension LotteriesResults {
     
-    var nonNilResults: [(name: String, result: LotteryResult)] {
-        return [("lotto", lotto), ("plus", lottoPlus), ("mini", mini)].compactMap {
+    var nonNilResults: [(icon: NSImage, result: LotteryResult)] {
+        return [(NSImage(named: "lotto")!, lotto),
+                (NSImage(named: "plus")!, lottoPlus),
+                (NSImage(named: "mini")!, mini)].compactMap {
             if $1 == nil { return nil }
             return ($0, $1!)
         }
