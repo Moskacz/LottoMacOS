@@ -13,6 +13,7 @@
 		90122C3721819EC000917483 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90122C3521819EC000917483 /* MainMenu.xib */; };
 		90122C722181CFC900917483 /* LottoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90122C712181CFC900917483 /* LottoAPI.framework */; };
 		90122C732181CFC900917483 /* LottoAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90122C712181CFC900917483 /* LottoAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		903C83CC21870234003414F9 /* ResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903C83CB21870234003414F9 /* ResultView.xib */; };
 		90445E7C2182F1890011B0E5 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90445E7B2182F1890011B0E5 /* ResultsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		90122C3821819EC000917483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90122C3921819EC000917483 /* LottoMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LottoMacOS.entitlements; sourceTree = "<group>"; };
 		90122C712181CFC900917483 /* LottoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LottoAPI.framework; path = Carthage/Build/Mac/LottoAPI.framework; sourceTree = "<group>"; };
+		903C83CB21870234003414F9 /* ResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultView.xib; sourceTree = "<group>"; };
 		90445E7B2182F1890011B0E5 /* ResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 				90122C3921819EC000917483 /* LottoMacOS.entitlements */,
 				90445E7B2182F1890011B0E5 /* ResultsController.swift */,
 				35788B7A2184AE170002B00B /* ResultView.swift */,
+				903C83CB21870234003414F9 /* ResultView.xib */,
 			);
 			path = LottoMacOS;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				903C83CC21870234003414F9 /* ResultView.xib in Resources */,
 				90122C3421819EC000917483 /* Assets.xcassets in Resources */,
 				90122C3721819EC000917483 /* MainMenu.xib in Resources */,
 			);

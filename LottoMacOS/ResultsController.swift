@@ -48,15 +48,14 @@ final class ResultsController: NSObject {
         let labeledResults = [("lotto", results.lotto), ("plus", results.lottoPlus), ("mini", results.mini)]
         let views = labeledResults.compactMap { labeledResult -> NSView? in
             guard let result = labeledResult.1 else { return nil }
-            let field = NSTextField()
-            field.stringValue = [labeledResult.0, result.textDescription].joined(separator: ": ")
-            field.isBezeled = false
-            field.isEditable = false
-            field.sizeToFit()
-            return field
+            let view = ResultView.makeNew()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.resultsLabel.stringValue = [labeledResult.0, result.textDescription].joined(separator: ": ")
+            view.layout()
+            return view
         }
         
-        let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 10, height: 10))
+        let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 300, height: 10))
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.orientation = .vertical
         stackView.alignment = .left
