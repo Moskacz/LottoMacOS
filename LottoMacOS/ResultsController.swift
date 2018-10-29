@@ -51,16 +51,7 @@ final class ResultsController: NSObject {
     }
     
     private func display(results: LotteriesResults) {
-        let labeledResults = [("lotto", results.lotto), ("plus", results.lottoPlus), ("mini", results.mini)]
-        let views = labeledResults.compactMap { labeledResult -> NSView? in
-            guard let result = labeledResult.1 else { return nil }
-            let view = ResultView.makeNew()
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.resultsLabel.stringValue = [labeledResult.0, result.textDescription].joined(separator: ": ")
-            view.dateLabel.stringValue = self.dateFormatter.string(from: result.date)
-            view.layout()
-            return view
-        }
+        let views = results.nonNilResults.map { makeResultView(lotteryName: $0, result: $1) }
         
         let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 300, height: 10))
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,11 +60,29 @@ final class ResultsController: NSObject {
         views.forEach { stackView.addArrangedSubview($0) }
         resultsItem.view = stackView
     }
+    
+    private func makeResultView(lotteryName: String, result: LotteryResult) -> ResultView {
+        let view = ResultView.makeNew()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.resultsLabel.stringValue = result.resultsText
+        view.dateLabel.stringValue = self.dateFormatter.string(from: result.date)
+        return view
+    }
 }
 
 extension LotteryResult {
     
-    var textDescription: String {
+    var resultsText: String {
         return numbers.map { String($0) }.joined(separator: ", ")
+    }
+}
+
+extension LotteriesResults {
+    
+    var nonNilResults: [(name: String, result: LotteryResult)] {
+        return [("lotto", lotto), ("plus", lottoPlus), ("mini", mini)].compactMap {
+            if $1 == nil { return nil }
+            return ($0, $1!)
+        }
     }
 }
