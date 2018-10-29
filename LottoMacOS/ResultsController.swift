@@ -16,6 +16,12 @@ final class ResultsController: NSObject {
     
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let client = LottoAPI.makeClient(baseURL: URL(string: "http://serwis.mobilotto.pl")!)
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
     
     private var fetchingTask: URLSessionDataTask?
     
@@ -51,6 +57,7 @@ final class ResultsController: NSObject {
             let view = ResultView.makeNew()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.resultsLabel.stringValue = [labeledResult.0, result.textDescription].joined(separator: ": ")
+            view.dateLabel.stringValue = self.dateFormatter.string(from: result.date)
             view.layout()
             return view
         }
