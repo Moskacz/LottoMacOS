@@ -39,11 +39,11 @@ final class ResultsController: NSObject {
     @IBAction func refreshSelected(_ sender: NSMenuItem) {
         fetchingTask?.cancel()
         fetchingTask = client.getNewestResults { [weak self] response in
-            switch response {
-            case .error(_):
-                break
-            case .value(let results):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch response {
+                case .error(let error):
+                    self?.display(error: error)
+                case .value(let results):
                     self?.display(results: results)
                 }
             }
@@ -51,7 +51,7 @@ final class ResultsController: NSObject {
     }
     
     private func display(results: LotteriesResults) {
-        let views = results.nonNilResults.map { makeResultView(icon: $0, result: $1) }
+        let views = results.displayableResults.map { makeResultView(icon: $0, result: $1) }
         let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 300, height: 10))
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.orientation = .vertical
@@ -65,9 +65,13 @@ final class ResultsController: NSObject {
         let view = ResultView.makeNew()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.resultsLabel.stringValue = result.resultsText
-        view.dateLabel.stringValue = self.dateFormatter.string(from: result.date)
+        view.dateLabel.stringValue = dateFormatter.string(from: result.date)
         view.imageView.image = icon
         return view
+    }
+    
+    private func display(error: Error) {
+        resultsItem.title = "Error fetching data :("
     }
 }
 
@@ -80,12 +84,13 @@ extension LotteryResult {
 
 extension LotteriesResults {
     
-    var nonNilResults: [(icon: NSImage, result: LotteryResult)] {
-        return [(NSImage(named: "lotto")!, lotto),
-                (NSImage(named: "plus")!, lottoPlus),
-                (NSImage(named: "mini")!, mini)].compactMap {
-            if $1 == nil { return nil }
-            return ($0, $1!)
+    var displayableResults: [(icon: NSImage, result: LotteryResult)] {
+        let mapping = [(NSImage(named: "lotto")!, lotto),
+                       (NSImage(named: "plus")!, lottoPlus),
+                       (NSImage(named: "mini")!, mini)]
+        return mapping.compactMap {
+            guard let result = $1 else { return nil }
+            return ($0, result)
         }
     }
 }
