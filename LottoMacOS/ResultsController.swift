@@ -52,11 +52,14 @@ final class ResultsController: NSObject {
             field.stringValue = [labeledResult.0, result.textDescription].joined(separator: ": ")
             field.isBezeled = false
             field.isEditable = false
+            field.sizeToFit()
             return field
         }
         
-        let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+        let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 10, height: 10))
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.orientation = .vertical
+        stackView.alignment = .left
         views.forEach { stackView.addArrangedSubview($0) }
         resultsItem.view = stackView
     }
